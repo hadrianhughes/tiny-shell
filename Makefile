@@ -5,7 +5,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -g
 
 # Source files
-SRC = src/main.c src/read.c
+SRC = src/main.c src/read.c src/tsh.c
 
 # Output executable
 OUTDIR = dist
