@@ -6,13 +6,17 @@
 #include "tsh.h"
 
 int main() {
-  char *line = read_line();
-  char **tokens = split_tokens(line);
+  tsh_status_t status;
 
-  run_cmd(tokens);
+  do {
+    char *line = read_line();
+    char **tokens = split_tokens(line);
 
-  free(tokens);
-  free(line);
+    status = run_cmd(tokens);
+
+    free(tokens);
+    free(line);
+  } while (status == TSH_OK);
 
   return EXIT_SUCCESS;
 }

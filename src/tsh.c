@@ -7,32 +7,34 @@
 
 #define NUM_BUILTINS 2
 
-void tsh_cd(char **args);
-void tsh_exit(char **args);
+tsh_status_t tsh_cd(char **args);
+tsh_status_t tsh_exit(char **args);
 
 char *tsh_cmds[] = {
   "cd",
   "exit"
 };
 
-void (*tsh_funcs[]) (char **) = {
+tsh_status_t (*tsh_funcs[]) (char **) = {
   &tsh_cd,
   &tsh_exit
 };
 
-void tsh_cd(char **args) {
+tsh_status_t tsh_cd(char **args) {
   if (args[1] == NULL) {
     perror("tsh: expected argument to command: \"cd\"");
-    return;
+    return TSH_OK;
   }
 
   if (chdir(args[1]) != 0) {
     perror("tsh: failed to change directory");
   }
+
+  return TSH_OK;
 }
 
-void tsh_exit(char **args) {
-  return;
+tsh_status_t tsh_exit(char **args) {
+  return TSH_EXIT;
 }
 
 void run_program(char **args) {
@@ -60,16 +62,18 @@ void run_program(char **args) {
   }
 }
 
-void run_cmd(char **args) {
+tsh_status_t run_cmd(char **args) {
   if (args[0] == NULL) {
-    return;
+    return TSH_OK;
   }
 
   for (int i = 0;i < NUM_BUILTINS;i++) {
     if (strcmp(args[0], tsh_cmds[i]) == 0) {
-      return (*tsh_funcs)(args);
+      return (*tsh_funcs[i])(args);
     }
   }
 
   run_program(args);
+
+  return TSH_OK;
 }
