@@ -11,7 +11,7 @@ int main() {
   do {
     print_prompt();
     char *line = read_line();
-    char **tokens = split_tokens(line);
+    char **tokens = tokenize(line);
 
     status = run_cmd(tokens);
 

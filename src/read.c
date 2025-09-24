@@ -25,7 +25,7 @@ char *read_line(void) {
   return buffer;
 }
 
-char **split_tokens(char *line) {
+char **tokenize(char *line) {
   size_t buf_size = TOKEN_BUF_SIZE;
   size_t num_tokens = 0;
 

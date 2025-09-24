@@ -7,6 +7,6 @@
 
 void print_prompt(void);
 char *read_line(void);
-char **split_tokens(char *line);
+char **tokenize(char *line);
 
 #endif
