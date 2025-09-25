@@ -1,3 +1,4 @@
+#include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -47,7 +48,11 @@ void run_program(char **args) {
   if (pid == 0) {
     // child process
     if (execvp(args[0], args) == -1) {
-      perror("tsh: failed to execute command");
+      if (errno == ENOENT) {
+        printf("tsh: command not recognised: %s\n", args[0]);
+      } else {
+        perror("tsh: failed to execute command");
+      }
     }
 
     exit(EXIT_FAILURE);
