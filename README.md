@@ -8,6 +8,4 @@ A toy shell written in C.
 - Create "file does not exist" error when command is a file path
 - Set up `alias` command
 - Set up `export` command and environment variables
-- Enable command history using up and down arrows
-- Add tab completion
 - Add the `!!` token
