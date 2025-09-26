@@ -35,6 +35,8 @@ tsh_status_t tsh_cd(char **args) {
 }
 
 tsh_status_t tsh_exit(char **args) {
+  (void)args;
+
   return TSH_EXIT;
 }
 

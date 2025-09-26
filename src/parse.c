@@ -3,27 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "read.h"
-
-char *read_line(void) {
-  size_t buf_size = LINE_BUF_SIZE;
-  char *buffer = NULL;
-
-  if (getline(&buffer, &buf_size, stdin) == -1) {
-    if (feof(stdin)) {
-      exit(EXIT_SUCCESS);
-    } else {
-      perror("tsh: failed to read line from stdin");
-      exit(EXIT_FAILURE);
-    }
-  }
-
-  return buffer;
-}
-
-bool is_ws_char(char c) {
-  return c == ' ' || c == '\n' || c == '\r';
-}
+#include "parse.h"
 
 char **tokenize(char *line) {
   size_t buf_size = TOKEN_BUF_SIZE;
@@ -63,7 +43,7 @@ char **tokenize(char *line) {
       continue;
     }
 
-    if (is_ws_char(c)) {
+    if (c == ' ' || c == '\n' || c == '\r') {
       if (token_start) {
         *p = '\0';
         tokens[num_tokens++] = token_start;
