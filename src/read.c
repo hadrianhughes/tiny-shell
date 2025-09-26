@@ -5,10 +5,6 @@
 
 #include "read.h"
 
-void print_prompt(void) {
-  printf("tsh ~> ");
-}
-
 char *read_line(void) {
   size_t buf_size = LINE_BUF_SIZE;
   char *buffer = NULL;

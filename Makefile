@@ -2,7 +2,11 @@
 CC = gcc
 
 # Compiler flags
-CFLAGS = -Wall -Wextra -g
+CFLAGS = -Wall -Wextra -g \
+				 -I/opt/homebrew/opt/readline/include
+
+LDFLAGS = -L/opt/homebrew/opt/readline/lib
+LDLIBS = -lreadline -lncurses
 
 # Source files
 SRC = src/main.c src/read.c src/tsh.c
@@ -19,7 +23,7 @@ $(OUTDIR):
 
 # Build executable
 $(OUT): $(SRC)
-	$(CC) $(CFLAGS) -o $(OUT) $(SRC)
+	$(CC) $(CFLAGS) -o $(OUT) $(SRC) $(LDFLAGS) $(LDLIBS)
 
 # Clean build artifacts
 clean:

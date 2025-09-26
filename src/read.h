@@ -5,7 +5,6 @@
 #define TOKEN_BUF_SIZE 64
 #define TOKEN_DELIM_CHARS " \t\n\r\a"
 
-void print_prompt(void);
 char *read_line(void);
 char **tokenize(char *line);
 
