@@ -9,7 +9,7 @@ LDFLAGS = -L/opt/homebrew/opt/readline/lib
 LDLIBS = -lreadline -lncurses
 
 # Source files
-SRC = src/main.c src/read.c src/tsh.c
+SRC = src/main.c src/parse.c src/tsh.c
 
 # Output executable
 OUTDIR = dist

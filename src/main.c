@@ -4,7 +4,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
-#include "read.h"
+#include "parse.h"
 #include "tsh.h"
 
 int main() {
